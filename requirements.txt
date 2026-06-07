@@ -1,0 +1,8 @@
+streamlit
+openai
+pyautogen
+autogen
+pandas
+python-dotenv
+deepeval
+plotly
