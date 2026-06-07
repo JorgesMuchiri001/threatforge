@@ -77,13 +77,30 @@ def run_deepeval(architecture_description, final_report):
 
     results = []
 
-    for metric in metrics:
+for metric in metrics:
+    metric_name = getattr(metric, "name", metric.__class__.__name__)
+    threshold = getattr(metric, "threshold", 0.7)
+
+    try:
         metric.measure(test_case)
+
+        score = metric.score if metric.score is not None else 0
+
         results.append({
-            "Metric": metric.name,
-            "Score": metric.score,
-            "Threshold": getattr(metric, "threshold", None),
-            "Reason": metric.reason
+            "Metric": metric_name,
+            "Score": score,
+            "Threshold": threshold,
+            "Status": "PASS" if score >= threshold else "FAIL",
+            "Reason": getattr(metric, "reason", "No reason provided")
+        })
+
+    except Exception as e:
+        results.append({
+            "Metric": metric_name,
+            "Score": 0,
+            "Threshold": threshold,
+            "Status": "ERROR",
+            "Reason": str(e)
         })
 
     return results
