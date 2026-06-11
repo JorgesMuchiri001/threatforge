@@ -47,7 +47,7 @@ Sensitive Data:
 """
 
 architecture_description = st.text_area(
-    "Enter banking architecture description",
+    "Enter architecture description",
     value=default_architecture,
     height=300
 )
