@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 st.title("🛡️ ThreatForge")
-st.subheader("AI-Driven STRIDE Threat Modeling Platform for Financial Institutions")
+st.subheader("AI-Driven STRIDE Threat Modeling Platform")
 
 default_architecture = """
 Bank Architecture
